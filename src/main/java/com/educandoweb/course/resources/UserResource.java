@@ -1,20 +1,36 @@
 package com.educandoweb.course.resources;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.educandoweb.course.entities.User;
+import com.educandoweb.course.services.UserService;
 
-@RestController
-@RequestMapping(value = "/users")
+@RestController //É a notação que faz o controle de acesso as camadas
+@RequestMapping(value = "/users") //Esta notação é usada para ser acessada no navegador
+//Que por sua vez(de forma invísivel ao usuário) acessa o método desta classe
 public class UserResource {
 	
-	@GetMapping
-	public ResponseEntity<User> findAll(){
-		User u = new User(1L, "Maria", "maria@gmail.com", "99999999", "12345");
-		return ResponseEntity.ok().body(u);
+	@Autowired
+	private UserService service;
+	
+	@GetMapping //esta é a notação que é recupera pelo @RequestMapping
+	//OBS.: esta notação também é para dizer que o tipo de requisição é GET
+	public ResponseEntity<List<User>> findAll(){
+		List<User> list = service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<User> findById(@PathVariable Long id){
+		User obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
 	}
 	
 }

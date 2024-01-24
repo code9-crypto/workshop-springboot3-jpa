@@ -9,8 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "tb_user")
+@Entity //cria a tabela no banco em cima desta classe
+@Table(name = "tb_user") //esta notação permite nomear a tabela
 public class User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
