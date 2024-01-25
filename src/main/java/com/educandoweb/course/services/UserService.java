@@ -17,6 +17,8 @@ public class UserService {
 	@Autowired
 	private UserRepository repository;
 	
+	//Na camada de serviço não é preciso declarar o retorno igual da camada de controller(Resources)
+	//Apenas o tipo de dado que será retorno, neste caso está sendo o tipo User
 	public List<User> findAll(){
 		return repository.findAll();
 	}
@@ -25,4 +27,9 @@ public class UserService {
 		Optional<User> obj = repository.findById(id);
 		return obj.get();
 	}
+	
+	public String mensagem() {
+		return "Você conhece o mario? hmmmmm";
+	}
+	
 }
