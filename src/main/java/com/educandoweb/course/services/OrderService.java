@@ -6,26 +6,25 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.educandoweb.course.entities.User;
-import com.educandoweb.course.repositories.UserRepository;
+import com.educandoweb.course.entities.Order;
+import com.educandoweb.course.repositories.OrderRepository;
 
 @Service
-public class UserService {
+public class OrderService {
 	
 	//Fazendo injeção dependência de forma fraca com a interface
-	//UserRepository
+	//OrderRepository
 	@Autowired
-	private UserRepository repository;
+	private OrderRepository repository;
 	
 	//Na camada de serviço não é preciso declarar o retorno igual da camada de controller(Resources)
-	//Apenas o tipo de dado que será retorno, neste caso está sendo o tipo User
-	public List<User> findAll(){
+	//Apenas o tipo de dado que será retorno, neste caso está sendo o tipo Order
+	public List<Order> findAll(){
 		return repository.findAll();
 	}
 	
-	public User findById(Long id) {
-		Optional<User> obj = repository.findById(id);
+	public Order findById(Long id) {
+		Optional<Order> obj = repository.findById(id);
 		return obj.get();
 	}
-	
 }

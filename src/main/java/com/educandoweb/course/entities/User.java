@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,7 +29,8 @@ public class User implements Serializable{
 	private String password;
 	
 	//Associação para classe order (1 para muitos)
-	@OneToMany( mappedBy = "client" ) //esta notação pega a referencia da classe que tem muitos 
+	@JsonIgnore //Esta notação traz todas associações referentes
+	@OneToMany( mappedBy = "client" ) //esta notação pega a referencia da classe que tem muitos	
 	private List<Order> orders = new ArrayList<>();
 	
 	public User() {
