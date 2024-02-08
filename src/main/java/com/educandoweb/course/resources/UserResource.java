@@ -18,7 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.educandoweb.course.entities.User;
 import com.educandoweb.course.services.UserService;
 
-@RestController //É a notação que faz o controle de acesso as camadas, ou seja, as páginas
+@RestController //É a notação que faz o controle de acesso as camadas, ou seja, as páginas/endpoints
 @RequestMapping(value = "/users") //Esta notação é usada para ser acessada no navegador
 //Que por sua vez(de forma invísivel ao usuário) acessa o método desta classe
 public class UserResource {
