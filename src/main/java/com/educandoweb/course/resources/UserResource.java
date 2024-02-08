@@ -49,21 +49,22 @@ public class UserResource {
 	public ResponseEntity<User> insert(@RequestBody User obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).body(obj);
+		return ResponseEntity.created(uri).body(obj);//Este comando fará retornar o código 201(created)
 	}
 	
 	@DeleteMapping( value = "/{id}" ) //Esta notação é usada para deletar
 	//Quando o verbo HTTP da requisição for delete, irá cair aqui
 	public ResponseEntity<Void> delete(@PathVariable Long id){
 		service.delete(id);
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.noContent().build();//Este comando fará retornar o código 204(No content)
+		//Significa que foi processado a requisição, mas não há nenhum retorno
 	}
 	
 	@PutMapping( value = "/{id}" ) //Esta notação é usada para atualizar
 	//Quando o verbo HTTP da requisição for put, irá cair aqui
 	public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj){
 		obj = service.update(id, obj);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(obj);//Este comando retorna o código 200(ok)
 	}
 	
 	
